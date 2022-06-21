@@ -4,3 +4,21 @@ Permettre l'éxécution d'une commande qui affichera un tableau d'information à
 
 ## Affichage des données :
 
+![Capture tableau1](https://user-images.githubusercontent.com/51318506/174809601-a83b40fa-c0bc-4899-af57-db4ca67b8852.png)
+
+### Utilisation des commandes
+
+Pour lancer la commande depuis le terminal, Vous devez taper :
+    - symfony console ReadFileCsv (argument le nom du fichier.csv) (option Json)
+    
+Si vous voulez affichez le tableau du dessus la commande sera :
+    - symfony console ReadFileCsv fichier.csv
+    
+Si vous voulez afficher du Json à la place du tableau, la commande sera :
+    - symfony console ReadFileCsv fichier.csv Json
+
+#### Technologie utilisée :
+
+  - Symfony 4.4
+  - Version PHP SUP2RIEUR à 7.1.3
+  
