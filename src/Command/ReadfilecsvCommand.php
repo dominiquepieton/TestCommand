@@ -51,28 +51,20 @@ class ReadfilecsvCommand extends Command
             '',
         ]);
 
-        $output->writeln('File : <fg=green>'.$input->getArgument('fichier').'</>');
+        //$output->writeln('File : <fg=green>'.$input->getArgument('fichier').'</>');
         
-        //$io = new SymfonyStyle($input, $output);
-        //$arg1 = $input->getArgument('arg1');
-
-        //if ($arg1) {
-        //    $io->note(sprintf('You passed an argument: %s', $arg1));
-        //}
-
-        //if ($input->getOption('option1')) {
-            // ...
-       // }
-
-        //$io->success('You have a new command! Now make it your own! Pass --help to see your options.');
-
-        //return 0;
         if($input->getArgument('Json'))
         {
             $output->writeln($this->csvToJson($output,$input));
         }else {
             $this->readCsv($output,$input);
         }
+
+        $output->writeln([
+            '',
+            '=========================================================',
+            '',
+        ]);
     }
 
     /**
@@ -174,9 +166,8 @@ class ReadfilecsvCommand extends Command
      * @param [type] $input
      * @return void
      */
-    public function csvToJson($output,$input)
+    private function csvToJson($output,$input)
     {
-        //dd(explode(".", $input->getArgument('fichier')));
         // Les extension autorisées
         $extensionValid = ['csv'];
 
