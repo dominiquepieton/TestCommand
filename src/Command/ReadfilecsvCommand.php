@@ -130,8 +130,8 @@ class ReadfilecsvCommand extends Command
 
                 // Création du tableau des données récupérées
                 $data = [
-                    [$firstline[0], $statusfirst, $pricefirstline, $first_description, $first_date, $first_slug ],
-                    [$secondline[0], $statussecond, $pricesecondline, $second_description, $second_date, $second_slug ]
+                    [$firstline[0], $statusfirst, $pricefirstline, str_replace("\\r","",$first_description), $first_date, $first_slug ],
+                    [$secondline[0], $statussecond, $pricesecondline, str_replace("<br/>","",$second_description), $second_date, $second_slug ]
                 ];
             
                 // Fermeture du fichier
@@ -228,7 +228,7 @@ class ReadfilecsvCommand extends Command
                         "Sku" => $firstline[0],
                         "Status" => $statusfirst,
                         "Price" => $pricefirstline,
-                        "Description" => $first_description,
+                        "Description" => str_replace("\\r","",$first_description),
                         "Created At" => $first_date,
                         "Slug" => $first_slug
                     ],
@@ -236,7 +236,7 @@ class ReadfilecsvCommand extends Command
                         "Sku" => $secondline[0],
                         "Status" => $statussecond,
                         "Price" => $pricesecondline,
-                        "Description" => $second_description,
+                        "Description" => str_replace("<br/>","",$second_description),
                         "Created At" => $second_date,
                         "Slug" => $second_slug
                     ]
