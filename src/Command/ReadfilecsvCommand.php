@@ -4,20 +4,16 @@ namespace App\Command;
 
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Serializer\Serializer;
-//use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ReadfilecsvCommand extends Command
 {
     private string $csvDirectory;
-    private SymfonyStyle $io;
+    
     protected static $defaultName = 'ReadFileCsv';
     protected static $defaultDescription = 'Add a short description for your command';
 
@@ -25,15 +21,17 @@ class ReadfilecsvCommand extends Command
     public function ___construct(string $csvDirectory)
     {
         $this->csvDirectory = $csvDirectory;
-        parent::__construct();
+        parent::__construct(self::$defaultName);
     }
 
     
     protected function configure(): void
     {
         $this->setDescription("Afficher les données d'un fichier CSV")
-            ->addArgument('fichier', InputArgument::REQUIRED, 'Indiquer le chemin du fichier.')
-            ->addArgument('Json', InputArgument::OPTIONAL, 'Afficher du json optional');
+            ->addArgument('fichier', InputArgument::REQUIRED, 'le nom du fichier.')
+            ->addArgument('Json', InputArgument::OPTIONAL, 'Afficher en format Json')
+            ->setHelp("La commande pour lire le fichier : ReadFileCsv [Argument: nom du fichier.extension] [option: Json]")
+        ;
     }
 
 
@@ -50,8 +48,6 @@ class ReadfilecsvCommand extends Command
             '=========================================================',
             '',
         ]);
-
-        //$output->writeln('File : <fg=green>'.$input->getArgument('fichier').'</>');
         
         if($input->getArgument('Json'))
         {
@@ -65,6 +61,7 @@ class ReadfilecsvCommand extends Command
             '=========================================================',
             '',
         ]);
+         
     }
 
     /**
@@ -75,7 +72,7 @@ class ReadfilecsvCommand extends Command
      */
     private function readCsv($output, $input): void
     {
-        //dd(explode(".", $input->getArgument('fichier')));
+        $io = new SymfonyStyle($input, $output);
         // Les extension autorisées
         $extensionValid = ['csv'];
 
@@ -147,6 +144,7 @@ class ReadfilecsvCommand extends Command
 
                 // Rendu du tableau
                 $table->render();
+                $io->success('Le fichier est correct...');
             
             } else {
                 // message d'erreur si le fichier n'existe pas.
@@ -168,6 +166,7 @@ class ReadfilecsvCommand extends Command
      */
     private function csvToJson($output,$input)
     {
+        $io = new SymfonyStyle($input, $output);
         // Les extension autorisées
         $extensionValid = ['csv'];
 
@@ -247,6 +246,7 @@ class ReadfilecsvCommand extends Command
                 fclose($file);
 
                 // Creation du JSON 
+                $io->success('Le fichier est correct...');
                 return json_encode($data);
                 
             } else {
