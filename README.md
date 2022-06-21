@@ -6,6 +6,10 @@ Permettre l'éxécution d'une commande qui affichera un tableau d'information à
 
 ![Capture tableau1](https://user-images.githubusercontent.com/51318506/174809601-a83b40fa-c0bc-4899-af57-db4ca67b8852.png)
 
+Affichage du Json :
+
+![Capture Json](https://user-images.githubusercontent.com/51318506/174814204-dcd03eee-2146-45fc-b6b9-8702b6531243.png)
+
 ### Utilisation des commandes
 
 Pour lancer la commande depuis le terminal, Vous devez taper :
