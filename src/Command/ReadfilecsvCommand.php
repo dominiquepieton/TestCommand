@@ -133,7 +133,7 @@ class ReadfilecsvCommand extends Command
                         $line[2] = "Enable";
                     }
                     // Gestion du price
-                    $price = round(floatval($line[3]),1,PHP_ROUND_HALF_UP)."0 ".$line[4]; // Sauvegarde de l'euro
+                    $price = str_replace(".", ",", round(floatval($line[3]),1,PHP_ROUND_HALF_UP)."0 ").$line[4]; // Sauvegarde de l'euro
                     // Gestion du format date
                     $date = date('l, d-M-Y H:i:s e', strtotime($line[6]));
                     // Gestion du slug
