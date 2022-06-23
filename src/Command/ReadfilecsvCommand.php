@@ -155,7 +155,7 @@ class ReadfilecsvCommand extends Command
 
                 if($input->getArgument("Json"))
                 {
-                    return json_encode($dataForJson);
+                    return $dataForJson;
                 } else {
                     return $dataTab;
                 }
