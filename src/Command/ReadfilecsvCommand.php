@@ -137,7 +137,7 @@ class ReadfilecsvCommand extends Command
                     // Gestion du format date
                     $date = date('l, d-M-Y H:i:s e', strtotime($line[6]));
                     // Gestion du slug
-                    $slug = str_replace(" ", "-", $line[1]);
+                    $slug = str_replace(",", "", str_replace(" ", "-", $line[1]));
                     // Récupération dans un tableau
                     $lines = [$line[0], $line[2], $price, $line[5], $date, $slug];
                     $dataTab[] = $lines;
