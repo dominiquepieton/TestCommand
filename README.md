@@ -15,7 +15,7 @@ Affichage du Json :
 Pour lancer la commande depuis le terminal, Vous devez taper :
 - symfony console ReadFileCsv (argument le nom du fichier.csv) (option Json)
     
-Si vous voulez affichez le tableau du dessus la commande sera :
+Si vous voulez afficher le tableau du dessus la commande sera :
 - symfony console ReadFileCsv fichier.csv
     
 Si vous voulez afficher du Json à la place du tableau, la commande sera :
